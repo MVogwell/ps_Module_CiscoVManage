@@ -6,8 +6,21 @@ This PowerShell module can be used to connection to and request data from a Cisc
 &nbsp; <br>
 
 ## Requirements
-This module requires PowerShell v5 or higher (including PowerShell 7). PowerShell 7 is preferred for the performance benefits.
+* IMPORTANT: Before using this module you must create a local user account in Cisco vManage and grant it privileges to use the API commands. This Cisco document contains information on how to create the user account: https://sdwan-docs.cisco.com/Product_Documentation/vManage_Help/Release_17.1/Administration/Manage_Users. <br><br>
+* It is recommended to create a new group, set the required permissions and then apply the group membership to the new user object. See the next section for information on recommended group permissions <br><br>
+* This module requires PowerShell v5 or higher (including PowerShell 7). PowerShell 7 is preferred for the performance benefits. <br><br>
 
+## vManage group permissions for basic API access
+From testing I have found the following groups are required to access the API (and reset vEdge interfaces)
+* Device Inventory - Read
+* Device Monitoring - Read + Write
+* Events - Events
+* Interface - Read + Write
+* RBAC VPN - Read
+* Security - Read
+* System - Read
+* Tools - Read  + Write
+  
 &nbsp; <br>
 
 ## Installing the module
@@ -51,9 +64,9 @@ Below is a list of the functions presented by the module with a description of e
 
 `$sBaseUri = "https://vmanage.mydomain.com/" ` \# Make sure the URL ends with a "/" for this example
 
-`$Username = "MyApiUser" `
+`$Username = "MyApiUser" `  \# Change this to whatever you set the vManage username to
 
-`$ssPwd = "MyPassword" | ConvertTo-SecureString -AsPlainText -Force `
+`$ssPwd = "MyPassword" | ConvertTo-SecureString -AsPlainText -Force `  \# Set the password as set in vManage
 
 `$objConnectionData = Connect-CiscovManageAPI -Username $Username -Password $ssPwd -Url $sBaseUri `
 
