@@ -16,10 +16,12 @@ From testing I have found the following groups are required to access the API (a
 * Device Monitoring - Read + Write
 * Events - Events
 * Interface - Read + Write
+* Manage Users - Read
 * RBAC VPN - Read
 * Security - Read
 * System - Read
 * Tools - Read  + Write
+
   
 &nbsp; <br>
 
